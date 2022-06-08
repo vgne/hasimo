@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../constants/constants.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginScreen extends StatefulWidget {
   static const String screenID = 'login_screen';
@@ -55,13 +56,27 @@ class _LoginScreenState extends State<LoginScreen> {
                   hintText: 'Enter your password'),
             ),
             const SizedBox(
-              height: 12.0,
+              height: 24.0,
             ),
             TextButton(
               onPressed: () {},
               child: const Text('Log in'),
               style: ElevatedButton.styleFrom(
                 primary: const Color(0xffC24827),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 50, vertical: 18),
+                // textStyle: const TextStyle(
+                //     fontSize: 30, fontWeight: FontWeight.bold)
+              ),
+            ),
+            const SizedBox(
+              height: 12.0,
+            ),
+            TextButton(
+              onPressed: () {},
+              child: const Text('Sign in'),
+              style: ElevatedButton.styleFrom(
+                primary: const Color(0xff090A0C),
                 padding:
                     const EdgeInsets.symmetric(horizontal: 50, vertical: 18),
                 // textStyle: const TextStyle(
