@@ -34,14 +34,25 @@ class _LoginScreenState extends State<LoginScreen> {
             const SizedBox(
               height: 50.0,
             ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset('asset/images/login_icon.png'),
+                const Text(
+                  'Log in',
+                  style: TextStyle(fontFamily: 'Circe'),
+                ),
+              ],
+            ),
+            const Divider(),
             TextField(
               keyboardType: TextInputType.emailAddress,
               textAlign: TextAlign.center,
               onChanged: (value) {
                 email = value;
               },
-              decoration: kTextFieldDecoration.copyWith(
-                  hintText: 'Enter your password'),
+              decoration:
+                  kTextFieldDecoration.copyWith(hintText: 'Enter your email'),
             ),
             const SizedBox(
               height: 8.0,

@@ -28,7 +28,14 @@ flutter:
      - assets/images/
   #   - images/a_dot_ham.jpeg
 
-  
+  fonts:
+     - family: Circe
+       fonts:
+         - asset: assets/fonts/CRC25.otf
+         - asset: assets/fonts/CRC35.ctf
+         - asset: assets/fonts/CRC55.otf
+         - asset: assets/fonts/CRC65.ctf
+           weight: 700
   # To add custom fonts to your application, add a fonts section here,
   # in this "flutter" section. Each entry in this list should have a
   # "family" key with the font family name, and a "fonts" key with a
