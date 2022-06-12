@@ -9,7 +9,7 @@ class HasimoApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Hasimo Demo',
+      title: 'Hasimo app',
       theme: ThemeData(
         primarySwatch:
             const MaterialColor(0xFFE8E5DD, kMaterialBackgroundColorCodes),
@@ -17,7 +17,7 @@ class HasimoApp extends StatelessWidget {
       home: LoginScreen(),
       // initialRoute: LoginScreen.screenID,
       // routes: {
-      //   LoginScreen.screenID: (context) => LoginScreen(),
+      //   LoginScreen.screenID: (context) => LoginScreen()
       //   // reg_screen, main_screen
       //},
     );

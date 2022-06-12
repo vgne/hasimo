@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../../constants/constants.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginScreen extends StatefulWidget {
   static const String screenID = 'login_screen';
@@ -35,12 +34,16 @@ class _LoginScreenState extends State<LoginScreen> {
               height: 50.0,
             ),
             Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Image.asset('asset/images/login_icon.png'),
+                Image.asset('assets/images/login_icon.png', height: 20.0),
+                const SizedBox(width: 10.0),
                 const Text(
                   'Log in',
-                  style: TextStyle(fontFamily: 'Circe'),
+                  style: TextStyle(
+                      fontFamily: 'Circe',
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold),
                 ),
               ],
             ),
@@ -52,7 +55,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 email = value;
               },
               decoration:
-                  kTextFieldDecoration.copyWith(hintText: 'Enter your email'),
+                  kTextFieldDecoration.copyWith(labelText: 'Enter your email'),
             ),
             const SizedBox(
               height: 8.0,
@@ -64,7 +67,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 password = value;
               },
               decoration: kTextFieldDecoration.copyWith(
-                  hintText: 'Enter your password'),
+                  labelText: 'Enter your password'),
             ),
             const SizedBox(
               height: 24.0,

@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "974367458682-8ndpus13o2k7q954bv68md486hcffs7c.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "io.hasimo",
+            "certificate_hash": "f628d60fb341d28207e5dd6cde47a5b8902d9cee"
+          }
+        },
+        {
           "client_id": "974367458682-90ff1g5rf5pm0r16ugaob53h6fr20v3h.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,6 +37,13 @@
             {
               "client_id": "974367458682-90ff1g5rf5pm0r16ugaob53h6fr20v3h.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "974367458682-g7mj6bnclp1q2ulkb2mr4t39trndn9um.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "io.hasimo"
+              }
             }
           ]
         }
