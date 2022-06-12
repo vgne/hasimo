@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "974367458682",
+    "project_id": "hasimo-app",
+    "storage_bucket": "hasimo-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:974367458682:android:0e0e255566bec1f25d02c3",
+        "android_client_info": {
+          "package_name": "io.hasimo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "974367458682-90ff1g5rf5pm0r16ugaob53h6fr20v3h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAJsY0Xp8Y9_lQSuMu5SeDqEje6pDuFZ0w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "974367458682-90ff1g5rf5pm0r16ugaob53h6fr20v3h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
