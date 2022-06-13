@@ -130,7 +130,12 @@ class _SignInState extends State<SignIn> {
                                   onPressed: () {
                                     _authenticateWithEmailAndPassword(context);
                                   },
-                                  child: const Text('Sign in'),
+                                  child: const Text(
+                                    'Sign in',
+                                    style: TextStyle(
+                                        fontFamily: 'Circle',
+                                        fontWeight: FontWeight.w600),
+                                  ),
                                   style: ElevatedButton.styleFrom(
                                     primary: const Color(0xffC24827),
                                     padding: const EdgeInsets.symmetric(
@@ -142,17 +147,39 @@ class _SignInState extends State<SignIn> {
                                 const SizedBox(
                                   height: 12.0,
                                 ),
-                                TextButton(
-                                  onPressed: () {},
-                                  child: const Text('Sign in'),
-                                  style: ElevatedButton.styleFrom(
-                                    primary: const Color(0xff090A0C),
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 50, vertical: 18),
-                                    // textStyle: const TextStyle(
-                                    //     fontSize: 30, fontWeight: FontWeight.bold)
-                                  ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    const Text(
+                                      'Don\'t have an account?',
+                                      style: TextStyle(
+                                          fontFamily: 'Circe', fontSize: 16.0),
+                                    ),
+                                    TextButton(
+                                      child: const Text('Sign up'),
+                                      style: TextButton.styleFrom(
+                                        primary: Colors.blue,
+                                        textStyle: const TextStyle(
+                                          fontFamily: 'Circe',
+                                        ),
+                                      ),
+                                      onPressed: () {
+                                        print('hello');
+                                      },
+                                    ),
+                                  ],
                                 ),
+                                // TextButton(
+                                //   onPressed: () {},
+                                //   child: const Text('Sign up'),
+                                //   style: ElevatedButton.styleFrom(
+                                //     primary: const Color(0xff090A0C),
+                                //     padding: const EdgeInsets.symmetric(
+                                //         horizontal: 50, vertical: 18),
+                                //     // textStyle: const TextStyle(
+                                //     //     fontSize: 30, fontWeight: FontWeight.bold)
+                                //   ),
+                                // ),
                               ],
                             ),
                           ),
@@ -163,11 +190,11 @@ class _SignInState extends State<SignIn> {
                         const Text(
                           'Or sign in with:',
                           textAlign: TextAlign.center,
-                        ),
-                        const SizedBox(
-                          height: 15.0,
+                          style: TextStyle(
+                              fontFamily: 'Circe', fontWeight: FontWeight.w400),
                         ),
                         Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
                             IconButton(
                               onPressed: () {
