@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hasimo/presentation/screens/sign_in_screen.dart';
 import '../../bloc/authentication/auth_bloc.dart';
 import '../../constants/constants.dart';
 import 'package:email_validator/email_validator.dart';
@@ -163,7 +164,10 @@ class _SignUpState extends State<SignUp> {
                                       ),
                                     ),
                                     onPressed: () {
-                                      print('hello');
+                                      Navigator.pushReplacement(context,
+                                      MaterialPageRoute(
+                                          builder: (context) => SignIn()),
+                                      );
                                     },
                                   ),
                                 ],
