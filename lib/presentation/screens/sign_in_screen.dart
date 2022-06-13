@@ -169,17 +169,6 @@ class _SignInState extends State<SignIn> {
                                     ),
                                   ],
                                 ),
-                                // TextButton(
-                                //   onPressed: () {},
-                                //   child: const Text('Sign up'),
-                                //   style: ElevatedButton.styleFrom(
-                                //     primary: const Color(0xff090A0C),
-                                //     padding: const EdgeInsets.symmetric(
-                                //         horizontal: 50, vertical: 18),
-                                //     // textStyle: const TextStyle(
-                                //     //     fontSize: 30, fontWeight: FontWeight.bold)
-                                //   ),
-                                // ),
                               ],
                             ),
                           ),

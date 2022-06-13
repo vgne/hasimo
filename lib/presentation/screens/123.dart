@@ -1,36 +1,58 @@
-import 'package:flutter/cupertino.dart';
+import 'package:bloc_auth/bloc/bloc/auth_bloc.dart';
+import 'package:bloc_auth/presentation/Dashboard/dashboard.dart';
+import 'package:bloc_auth/presentation/SignIn/sign_in.dart';
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-@override
-Widget build(BuildContext context) {
-  return Scaffold(
-    appBar: AppBar(
-      title: const Text("SignIn"),
-    ),
-    body: BlocListener<AuthBloc, AuthState>(
-      listener: (context, state) {
-        if (state is Authenticated) {
-          // Navigating to the dashboard screen if the user is authenticated
-          Navigator.pushReplacement(context,
-              MaterialPageRoute(builder: (context) => const Dashboard()));
-        }
-        if (state is AuthError) {
-          // Showing the error message if the user has entered invalid credentials
-          ScaffoldMessenger.of(context)
-              .showSnackBar(SnackBar(content: Text(state.error)));
-        }
-      },
-      child: BlocBuilder<AuthBloc, AuthState>(
-        builder: (context, state) {
-          if (state is Loading) {
-            // Showing the loading indicator while the user is signing in
-            return const Center(
-              child: CircularProgressIndicator(),
+class SignUp extends StatefulWidget {
+  const SignUp({Key? key}) : super(key: key);
+
+  @override
+  State<SignUp> createState() => _SignUpState();
+}
+
+class _SignUpState extends State<SignUp> {
+  final _formKey = GlobalKey<FormState>();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("SignUp"),
+      ),
+      body: BlocConsumer<AuthBloc, AuthState>(
+        listener: (context, state) {
+          if (state is Authenticated) {
+            // Navigating to the dashboard screen if the user is authenticated
+            Navigator.of(context).pushReplacement(
+              MaterialPageRoute(
+                builder: (context) => const Dashboard(),
+              ),
             );
           }
+          if (state is AuthError) {
+            // Displaying the error message if the user is not authenticated
+            ScaffoldMessenger.of(context)
+                .showSnackBar(SnackBar(content: Text(state.error)));
+          }
+        },
+        builder: (context, state) {
+          if (state is Loading) {
+            // Displaying the loading indicator while the user is signing up
+            return const Center(child: CircularProgressIndicator());
+          }
           if (state is UnAuthenticated) {
-            // Showing the sign in form if the user is not authenticated
+            // Displaying the sign up form if the user is not authenticated
             return Center(
               child: Padding(
                 padding: const EdgeInsets.all(18.0),
@@ -40,7 +62,7 @@ Widget build(BuildContext context) {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       const Text(
-                        "Sign In",
+                        "Sign Up",
                         style: TextStyle(
                           fontSize: 38,
                           fontWeight: FontWeight.bold,
@@ -55,7 +77,6 @@ Widget build(BuildContext context) {
                           child: Column(
                             children: [
                               TextFormField(
-                                keyboardType: TextInputType.emailAddress,
                                 controller: _emailController,
                                 decoration: const InputDecoration(
                                   hintText: "Email",
@@ -74,7 +95,6 @@ Widget build(BuildContext context) {
                                 height: 10,
                               ),
                               TextFormField(
-                                keyboardType: TextInputType.text,
                                 controller: _passwordController,
                                 decoration: const InputDecoration(
                                   hintText: "Password",
@@ -95,15 +115,27 @@ Widget build(BuildContext context) {
                                 width: MediaQuery.of(context).size.width * 0.7,
                                 child: ElevatedButton(
                                   onPressed: () {
-                                    _authenticateWithEmailAndPassword(context);
+                                    _createAccountWithEmailAndPassword(context);
                                   },
-                                  child: const Text('Sign In'),
+                                  child: const Text('Sign Up'),
                                 ),
                               )
                             ],
                           ),
                         ),
                       ),
+                      const Text("Already have an account?"),
+                      OutlinedButton(
+                        onPressed: () {
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const SignIn()),
+                          );
+                        },
+                        child: const Text("Sign In"),
+                      ),
+                      const Text("Or"),
                       IconButton(
                         onPressed: () {
                           _authenticateWithGoogle(context);
@@ -114,17 +146,6 @@ Widget build(BuildContext context) {
                           width: 30,
                         ),
                       ),
-                      const Text("Don't have an account?"),
-                      OutlinedButton(
-                        onPressed: () {
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const SignUp()),
-                          );
-                        },
-                        child: const Text("Sign Up"),
-                      )
                     ],
                   ),
                 ),
@@ -134,6 +155,23 @@ Widget build(BuildContext context) {
           return Container();
         },
       ),
-    ),
-  );
+    );
+  }
+
+  void _createAccountWithEmailAndPassword(BuildContext context) {
+    if (_formKey.currentState!.validate()) {
+      BlocProvider.of<AuthBloc>(context).add(
+        SignUpRequested(
+          _emailController.text,
+          _passwordController.text,
+        ),
+      );
+    }
+  }
+
+  void _authenticateWithGoogle(context) {
+    BlocProvider.of<AuthBloc>(context).add(
+      GoogleSignInRequested(),
+    );
+  }
 }
