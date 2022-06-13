@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../bloc/authentication/auth_bloc.dart';
 import '../../constants/constants.dart';
 import 'package:email_validator/email_validator.dart';
+import '../screens/search_screen.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({Key? key}) : super(key: key);
@@ -34,9 +35,9 @@ class _SignInState extends State<SignIn> {
       body: BlocListener<AuthBloc, AuthState>(
         listener: (context, state) {
           if (state is Authenticated) {
-            // Navigating to the dashboard screen if the user is authenticated
-            // Navigator.pushReplacement(context,
-            //     MaterialPageRoute(builder: (context) => const Home()));
+           // Navigating to the dashboard screen if the user is authenticated
+            Navigator.pushReplacement(context,
+                MaterialPageRoute(builder: (context) => const SearchScreen()));
           }
           if (state is AuthError) {
             // Showing the error message if the user has entered invalid credentials
