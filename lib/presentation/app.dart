@@ -21,6 +21,14 @@ class HasimoApp extends StatelessWidget {
           theme: ThemeData(
             primarySwatch:
                 const MaterialColor(0xFFE8E5DD, kMaterialBackgroundColorCodes),
+            fontFamily: 'Circe',
+            bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+              backgroundColor: kBackgroundColor,
+              selectedItemColor: kPrimaryColor,
+              unselectedItemColor: Colors.grey,
+              // selectedLabelStyle: TextStyle(color: kPrimaryColor),
+              // unselectedLabelStyle: TextStyle(color: Colors.grey),
+            ),
           ),
           home: const SignIn(),
           // initialRoute: LoginScreen.screenID,
@@ -28,6 +36,7 @@ class HasimoApp extends StatelessWidget {
           //   LoginScreen.screenID: (context) => LoginScreen()
           //   // reg_screen, main_screen
           //},
+
         ),
       ),
     );

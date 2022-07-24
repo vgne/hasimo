@@ -29,14 +29,11 @@ class _SignInState extends State<SignIn> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   title: const Text('Login page'),
-      // ),
       backgroundColor: kBackgroundColor,
       body: BlocListener<AuthBloc, AuthState>(
         listener: (context, state) {
           if (state is Authenticated) {
-           // Navigating to the dashboard screen if the user is authenticated
+            // Navigating to the dashboard screen if the user is authenticated
             Navigator.pushReplacement(context,
                 MaterialPageRoute(builder: (context) => const SearchScreen()));
           }
@@ -98,7 +95,15 @@ class _SignInState extends State<SignIn> {
                                   controller: _emailController,
                                   //textAlign: TextAlign.center,
                                   decoration: kTextFieldDecoration.copyWith(
-                                      labelText: 'Enter your email'),
+                                    labelText: 'Enter your email',
+                                    prefixIcon: const Padding(
+                                      padding: EdgeInsets.all(0.0),
+                                      child: Icon(
+                                        Icons.mail,
+                                        color: Colors.grey,
+                                      ),
+                                    ),
+                                  ),
                                   autovalidateMode:
                                       AutovalidateMode.onUserInteraction,
                                   validator: (value) {
@@ -116,7 +121,15 @@ class _SignInState extends State<SignIn> {
                                   controller: _passwordController,
                                   obscureText: true,
                                   decoration: kTextFieldDecoration.copyWith(
-                                      labelText: 'Enter your password'),
+                                    labelText: 'Enter your password',
+                                    prefixIcon: const Padding(
+                                      padding: EdgeInsets.all(0.0),
+                                      child: Icon(
+                                        Icons.password,
+                                        color: Colors.grey,
+                                      ),
+                                    ),
+                                  ),
                                   autovalidateMode:
                                       AutovalidateMode.onUserInteraction,
                                   validator: (value) {
@@ -166,9 +179,11 @@ class _SignInState extends State<SignIn> {
                                         ),
                                       ),
                                       onPressed: () {
-                                        Navigator.pushReplacement(context,
-                                        MaterialPageRoute(
-                                            builder: (context) => const SignUp()),
+                                        Navigator.pushReplacement(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  const SignUp()),
                                         );
                                       },
                                     ),
