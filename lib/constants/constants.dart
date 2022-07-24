@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 const kBackgroundColor = Color(0xFFE8E5DD);
 const kPrimaryLightColor = Color(0xFFF1E6FF);
+const kPrimaryColor = Color(0XFFC24827);
 
 const Map<int, Color> kMaterialBackgroundColorCodes = {
   50: Color(0xFF0f0e0a),

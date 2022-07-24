@@ -15,11 +15,13 @@ class SignUp extends StatefulWidget {
 
 class _SignUpState extends State<SignUp> {
   final _formKey = GlobalKey<FormState>();
+  final _nameController = TextEditingController();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
 
   @override
   void dispose() {
+    _nameController.dispose();
     _emailController.dispose();
     _passwordController.dispose();
     super.dispose();
@@ -77,7 +79,7 @@ class _SignUpState extends State<SignUp> {
                               height: 20.0),
                           const SizedBox(width: 10.0),
                           const Text(
-                            'Log in',
+                            'Sign up',
                             style: TextStyle(
                                 fontFamily: 'Circe',
                                 fontSize: 24,
@@ -91,12 +93,44 @@ class _SignUpState extends State<SignUp> {
                           key: _formKey,
                           child: Column(
                             children: [
+
+                              TextFormField(
+                                keyboardType: TextInputType.text,
+                                controller: _nameController,
+                                //textAlign: TextAlign.center,
+                                decoration: kTextFieldDecoration.copyWith(
+                                    labelText: 'Enter your name',
+                                  prefixIcon: const Padding(
+                                    padding: EdgeInsets.all(0.0),
+                                    child: Icon(
+                                      Icons.person,
+                                      color: Colors.grey,
+                                    ),
+                                  ),
+                                ),
+                                autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
+                                validator: (value) {
+                                  return value != null
+                                      ? 'Please, enter your name'
+                                      : null;
+                                },
+                              ),
+                              const SizedBox(height: 8.0,),
                               TextFormField(
                                 keyboardType: TextInputType.emailAddress,
                                 controller: _emailController,
                                 //textAlign: TextAlign.center,
                                 decoration: kTextFieldDecoration.copyWith(
-                                    labelText: 'Enter your email'),
+                                    labelText: 'Enter your email',
+                                  prefixIcon: const Padding(
+                                    padding: EdgeInsets.all(0.0),
+                                    child: Icon(
+                                      Icons.mail,
+                                      color: Colors.grey,
+                                    ),
+                                  ),
+                                ),
                                 autovalidateMode:
                                     AutovalidateMode.onUserInteraction,
                                 validator: (value) {
@@ -114,7 +148,14 @@ class _SignUpState extends State<SignUp> {
                                 controller: _passwordController,
                                 obscureText: true,
                                 decoration: kTextFieldDecoration.copyWith(
-                                    labelText: 'Enter your password'),
+                                    labelText: 'Enter your password',
+                                  prefixIcon: const Padding(
+                                    padding: EdgeInsets.all(0.0),
+                                    child: Icon(
+                                      Icons.password,
+                                      color: Colors.grey,
+                                    ),
+                                  ),),
                                 autovalidateMode:
                                     AutovalidateMode.onUserInteraction,
                                 validator: (value) {
