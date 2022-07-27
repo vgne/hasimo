@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hasimo/presentation/screens/sign_in_screen.dart';
 import '../../bloc/authentication/auth_bloc.dart';
 import '../../constants/constants.dart';
-import '../widget.dart';
+import '../widgets/app_bar_widget.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class SearchScreen extends StatelessWidget {
@@ -23,7 +23,7 @@ class SearchScreen extends StatelessWidget {
           if (state is UnAuthenticated) {
             // Navigate to the sign in screen when the user Signs Out
             Navigator.of(context).pushAndRemoveUntil(
-              MaterialPageRoute(builder: (context) => const SignIn()),
+              MaterialPageRoute(builder: (context) => const SignInScreen()),
               (route) => false,
             );
           }
@@ -43,14 +43,18 @@ class SearchScreen extends StatelessWidget {
                     Icon(
                       Icons.search,
                       color: kPrimaryColor,
+                      size: 29,
                     ),
                     SizedBox(
                       width: 10.0,
                     ),
                     Text(
                       'Search',
-                      style:
-                          TextStyle(fontSize: 24, fontWeight: FontWeight.w700),
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.w800,
+                        color: Colors.black,
+                      ),
                     ),
                   ],
                 ),
@@ -94,6 +98,8 @@ class SearchScreen extends StatelessWidget {
       ),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
+        selectedItemColor: kPrimaryColor,
+
         currentIndex: _selectedTab, //Search screen
         items: const [
           BottomNavigationBarItem(
@@ -103,7 +109,7 @@ class SearchScreen extends StatelessWidget {
           BottomNavigationBarItem(
               icon: FaIcon(FontAwesomeIcons.chartLine), label: 'Screener'),
           BottomNavigationBarItem(
-            icon: FaIcon(FontAwesomeIcons.search),
+            icon: FaIcon(FontAwesomeIcons.magnifyingGlass),
             label: 'Search',
           ),
           BottomNavigationBarItem(

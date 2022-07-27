@@ -22,21 +22,13 @@ class HasimoApp extends StatelessWidget {
             primarySwatch:
                 const MaterialColor(0xFFE8E5DD, kMaterialBackgroundColorCodes),
             fontFamily: 'Circe',
-            bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-              backgroundColor: kBackgroundColor,
-              selectedItemColor: kPrimaryColor,
-              unselectedItemColor: Colors.grey,
-              // selectedLabelStyle: TextStyle(color: kPrimaryColor),
-              // unselectedLabelStyle: TextStyle(color: Colors.grey),
-            ),
           ),
-          home: const SignIn(),
+          home: const SignInScreen(),
           // initialRoute: LoginScreen.screenID,
           // routes: {
           //   LoginScreen.screenID: (context) => LoginScreen()
           //   // reg_screen, main_screen
           //},
-
         ),
       ),
     );

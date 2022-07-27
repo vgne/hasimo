@@ -6,15 +6,15 @@ import '../../constants/constants.dart';
 import 'package:email_validator/email_validator.dart';
 import '../screens/search_screen.dart';
 
-class SignIn extends StatefulWidget {
-  const SignIn({Key? key}) : super(key: key);
+class SignInScreen extends StatefulWidget {
+  const SignInScreen({Key? key}) : super(key: key);
 
   static const String screenID = 'signin_screen';
   @override
-  State<SignIn> createState() => _SignInState();
+  State<SignInScreen> createState() => _SignInScreenState();
 }
 
-class _SignInState extends State<SignIn> {
+class _SignInScreenState extends State<SignInScreen> {
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
@@ -29,6 +29,9 @@ class _SignInState extends State<SignIn> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // appBar: AppBar(
+      //   title: const Text('Login page'),
+      // ),
       backgroundColor: kBackgroundColor,
       body: BlocListener<AuthBloc, AuthState>(
         listener: (context, state) {
@@ -95,15 +98,7 @@ class _SignInState extends State<SignIn> {
                                   controller: _emailController,
                                   //textAlign: TextAlign.center,
                                   decoration: kTextFieldDecoration.copyWith(
-                                    labelText: 'Enter your email',
-                                    prefixIcon: const Padding(
-                                      padding: EdgeInsets.all(0.0),
-                                      child: Icon(
-                                        Icons.mail,
-                                        color: Colors.grey,
-                                      ),
-                                    ),
-                                  ),
+                                      labelText: 'Enter your email'),
                                   autovalidateMode:
                                       AutovalidateMode.onUserInteraction,
                                   validator: (value) {
@@ -121,15 +116,7 @@ class _SignInState extends State<SignIn> {
                                   controller: _passwordController,
                                   obscureText: true,
                                   decoration: kTextFieldDecoration.copyWith(
-                                    labelText: 'Enter your password',
-                                    prefixIcon: const Padding(
-                                      padding: EdgeInsets.all(0.0),
-                                      child: Icon(
-                                        Icons.password,
-                                        color: Colors.grey,
-                                      ),
-                                    ),
-                                  ),
+                                      labelText: 'Enter your password'),
                                   autovalidateMode:
                                       AutovalidateMode.onUserInteraction,
                                   validator: (value) {
@@ -183,7 +170,7 @@ class _SignInState extends State<SignIn> {
                                           context,
                                           MaterialPageRoute(
                                               builder: (context) =>
-                                                  const SignUp()),
+                                                  const SignUpScreen()),
                                         );
                                       },
                                     ),

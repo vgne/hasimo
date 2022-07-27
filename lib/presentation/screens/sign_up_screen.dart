@@ -5,15 +5,15 @@ import '../../bloc/authentication/auth_bloc.dart';
 import '../../constants/constants.dart';
 import 'package:email_validator/email_validator.dart';
 
-class SignUp extends StatefulWidget {
-  const SignUp({Key? key}) : super(key: key);
+class SignUpScreen extends StatefulWidget {
+  const SignUpScreen({Key? key}) : super(key: key);
 
   static const String screenID = 'signup_screen';
   @override
-  State<SignUp> createState() => _SignUpState();
+  State<SignUpScreen> createState() => _SignUpScreenState();
 }
 
-class _SignUpState extends State<SignUp> {
+class _SignUpScreenState extends State<SignUpScreen> {
   final _formKey = GlobalKey<FormState>();
   final _nameController = TextEditingController();
   final _emailController = TextEditingController();
@@ -93,13 +93,12 @@ class _SignUpState extends State<SignUp> {
                           key: _formKey,
                           child: Column(
                             children: [
-
                               TextFormField(
                                 keyboardType: TextInputType.text,
                                 controller: _nameController,
                                 //textAlign: TextAlign.center,
                                 decoration: kTextFieldDecoration.copyWith(
-                                    labelText: 'Enter your name',
+                                  labelText: 'Enter your name',
                                   prefixIcon: const Padding(
                                     padding: EdgeInsets.all(0.0),
                                     child: Icon(
@@ -109,20 +108,22 @@ class _SignUpState extends State<SignUp> {
                                   ),
                                 ),
                                 autovalidateMode:
-                                AutovalidateMode.onUserInteraction,
+                                    AutovalidateMode.onUserInteraction,
                                 validator: (value) {
                                   return value != null
                                       ? 'Please, enter your name'
                                       : null;
                                 },
                               ),
-                              const SizedBox(height: 8.0,),
+                              const SizedBox(
+                                height: 8.0,
+                              ),
                               TextFormField(
                                 keyboardType: TextInputType.emailAddress,
                                 controller: _emailController,
                                 //textAlign: TextAlign.center,
                                 decoration: kTextFieldDecoration.copyWith(
-                                    labelText: 'Enter your email',
+                                  labelText: 'Enter your email',
                                   prefixIcon: const Padding(
                                     padding: EdgeInsets.all(0.0),
                                     child: Icon(
@@ -148,14 +149,15 @@ class _SignUpState extends State<SignUp> {
                                 controller: _passwordController,
                                 obscureText: true,
                                 decoration: kTextFieldDecoration.copyWith(
-                                    labelText: 'Enter your password',
+                                  labelText: 'Enter your password',
                                   prefixIcon: const Padding(
                                     padding: EdgeInsets.all(0.0),
                                     child: Icon(
                                       Icons.password,
                                       color: Colors.grey,
                                     ),
-                                  ),),
+                                  ),
+                                ),
                                 autovalidateMode:
                                     AutovalidateMode.onUserInteraction,
                                 validator: (value) {
@@ -205,9 +207,11 @@ class _SignUpState extends State<SignUp> {
                                       ),
                                     ),
                                     onPressed: () {
-                                      Navigator.pushReplacement(context,
-                                      MaterialPageRoute(
-                                          builder: (context) => SignIn()),
+                                      Navigator.pushReplacement(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                SignInScreen()),
                                       );
                                     },
                                   ),
