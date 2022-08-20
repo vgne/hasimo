@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hasimo/bloc/authentication/auth_bloc.dart';
 import 'package:hasimo/data/repositories/auth_repository.dart';
+import 'package:hasimo/presentation/screens/metrics_screen.dart';
 import 'package:hasimo/presentation/screens/screener_screen.dart';
 import '../presentation/screens/sign_in_screen.dart';
 import '../constants/constants.dart';
@@ -19,7 +20,7 @@ class HasimoApp extends StatelessWidget {
             const MaterialColor(0xFFE8E5DD, kMaterialBackgroundColorCodes),
         fontFamily: 'Circe',
       ),
-      home: const ScreenerScreen(),
+      home: const MetricsScreen(),
     );
     // return RepositoryProvider(
     //   create: (context) => AuthRepository(),
