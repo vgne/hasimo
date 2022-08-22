@@ -8,16 +8,19 @@ class MetricsScreen extends StatefulWidget {
   State<MetricsScreen> createState() => _MetricsScreenState();
 }
 
+List<String> selectedChoices = [];
+
 class _MetricsScreenState extends State<MetricsScreen> {
   String dropdownValue = 'Greater than';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Center(
+        title: const Center(
           child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: const Text(
+            padding: EdgeInsets.all(8.0),
+            child: Text(
               'Metrics',
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
@@ -27,106 +30,354 @@ class _MetricsScreenState extends State<MetricsScreen> {
       ),
       backgroundColor: kBackgroundColor,
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0),
-          child: Column(
-            children: [
-              Row(
-                children: [
-                  Row(
-                    children: const [
-                      Text(
-                        'Metrics',
-                        style: TextStyle(
-                            fontSize: 28, fontWeight: FontWeight.bold),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 9.0,
-              ),
-              const MultiSelectChip(
-                metricsList: metricsList,
-              ),
-              const SizedBox(
-                height: 18.0,
-              ),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16.0),
-                child: Divider(),
-              ),
-              const SizedBox(
-                height: 18.0,
-              ),
-              Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: const [
-                      Text(
-                        'Ev/EBITDA',
-                        style: TextStyle(fontSize: 24),
-                        textAlign: TextAlign.left,
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 18,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    Row(
+                      children: const [
+                        Text(
+                          'Metrics',
+                          style: TextStyle(
+                              fontSize: 28, fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 9.0,
+                ),
+                const MultiSelectChip(
+                  metricsList: metricsList,
+                ),
+                const SizedBox(
+                  height: 18.0,
+                ),
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 16.0),
+                  child: Divider(),
+                ),
+                const SizedBox(
+                  height: 18.0,
+                ),
+                if (selectedChoices.contains('Ev/EBITDA'))
+                  Column(
                     children: [
-                      Expanded(
-                        child: DropdownButtonFormField(
-                          decoration: const InputDecoration(
-                            enabledBorder: InputBorder.none,
-                            // focusedBorder: OutlineInputBorder(
-                            //   borderSide: BorderSide(color: kChipColor)
-                            // ),
-                            filled: true,
-                            fillColor: Colors.white,
-                          //  contentPadding: EdgeInsets.all(0.0),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: const [
+                          Text(
+                            'Ev/EBITDA',
+                            style: TextStyle(fontSize: 24),
+                            textAlign: TextAlign.left,
                           ),
-                          isExpanded: true,
-                          value: dropdownValue,
-                          iconEnabledColor: kChipColor,
-                          items: <String>[
-                              'Greater than',
-                              'Less than',
-                              'Equals',
-                              'Between',
-                            ].map<DropdownMenuItem<String>>((String value) {
-                              return DropdownMenuItem<String>(
-                                value: value,
-                                child: Text(value),
-                              );
-                            }).toList(),
-                          onChanged: (String? newValue) {
-                            setState(() {
-                              dropdownValue = newValue!;
-                            });
-                          },
-                        ),
+                        ],
                       ),
-                      const Expanded(
-                        child: TextField(
-                          decoration: InputDecoration(
-                            border: InputBorder.none,
-                            filled: true,
-                            fillColor: Colors.white,
+                      const SizedBox(
+                        height: 18,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Expanded(
+                            child: DropdownButtonFormField(
+                              decoration: const InputDecoration(
+                                enabledBorder: InputBorder.none,
+                                filled: true,
+                                fillColor: Colors.white,
+                                //  contentPadding: EdgeInsets.all(0.0),
+                              ),
+                              isExpanded: true,
+                              value: dropdownValue,
+                              iconEnabledColor: kChipColor,
+                              items: <String>[
+                                'Greater than',
+                                'Less than',
+                                'Equals',
+                                'Between',
+                              ].map<DropdownMenuItem<String>>((String value) {
+                                return DropdownMenuItem<String>(
+                                  value: value,
+                                  child: Text(value),
+                                );
+                              }).toList(),
+                              onChanged: (String? newValue) {
+                                setState(() {
+                                  dropdownValue = newValue!;
+                                });
+                              },
+                            ),
                           ),
-                        ),
+                          const SizedBox(
+                            width: 2.0,
+                          ),
+                          const Expanded(
+                            child: TextField(
+                              decoration: InputDecoration(
+                                border: InputBorder.none,
+                                filled: true,
+                                fillColor: Colors.white,
+                              ),
+                            ),
+                          ),
+                          // const Text(' - '),
+                          // const Expanded(
+                          //   child: TextField(
+                          //     decoration: InputDecoration(
+                          //       border: InputBorder.none,
+                          //       filled: true,
+                          //       fillColor: Colors.white,
+                          //     ),
+                          //   ),
+                          // ),
+                        ],
                       ),
+                      const SizedBox(
+                        height: 18.0,
+                      ),
+                      const Divider(),
                     ],
                   ),
-                  const SizedBox(
-                    height: 18.0,
-                  )
-                ],
-              )
-            ],
+                if (selectedChoices.contains('P/E')) //Price/Earnings
+                  Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: const [
+                          Text(
+                            'Price/Earnings',
+                            style: TextStyle(fontSize: 24),
+                            textAlign: TextAlign.left,
+                          ),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 18,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Expanded(
+                            child: DropdownButtonFormField(
+                              decoration: const InputDecoration(
+                                enabledBorder: InputBorder.none,
+                                filled: true,
+                                fillColor: Colors.white,
+                                //  contentPadding: EdgeInsets.all(0.0),
+                              ),
+                              isExpanded: true,
+                              value: dropdownValue,
+                              iconEnabledColor: kChipColor,
+                              items: <String>[
+                                'Greater than',
+                                'Less than',
+                                'Equals',
+                                'Between',
+                              ].map<DropdownMenuItem<String>>((String value) {
+                                return DropdownMenuItem<String>(
+                                  value: value,
+                                  child: Text(value),
+                                );
+                              }).toList(),
+                              onChanged: (String? newValue) {
+                                setState(() {
+                                  dropdownValue = newValue!;
+                                });
+                              },
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 2.0,
+                          ),
+                          const Expanded(
+                            child: TextField(
+                              decoration: InputDecoration(
+                                border: InputBorder.none,
+                                filled: true,
+                                fillColor: Colors.white,
+                              ),
+                            ),
+                          ),
+                          // const Text(' - '),
+                          // const Expanded(
+                          //   child: TextField(
+                          //     decoration: InputDecoration(
+                          //       border: InputBorder.none,
+                          //       filled: true,
+                          //       fillColor: Colors.white,
+                          //     ),
+                          //   ),
+                          // ),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 18.0,
+                      ),
+                      const Divider(),
+                    ],
+                  ),
+                if (selectedChoices.contains('P/B')) //Price/Book
+                  Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: const [
+                          Text(
+                            'Price/Book ratio',
+                            style: TextStyle(fontSize: 24),
+                            textAlign: TextAlign.left,
+                          ),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 18,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Expanded(
+                            child: DropdownButtonFormField(
+                              decoration: const InputDecoration(
+                                enabledBorder: InputBorder.none,
+                                filled: true,
+                                fillColor: Colors.white,
+                                //  contentPadding: EdgeInsets.all(0.0),
+                              ),
+                              isExpanded: true,
+                              value: dropdownValue,
+                              iconEnabledColor: kChipColor,
+                              items: <String>[
+                                'Greater than',
+                                'Less than',
+                                'Equals',
+                                'Between',
+                              ].map<DropdownMenuItem<String>>((String value) {
+                                return DropdownMenuItem<String>(
+                                  value: value,
+                                  child: Text(value),
+                                );
+                              }).toList(),
+                              onChanged: (String? newValue) {
+                                setState(() {
+                                  dropdownValue = newValue!;
+                                });
+                              },
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 2.0,
+                          ),
+                          const Expanded(
+                            child: TextField(
+                              decoration: InputDecoration(
+                                border: InputBorder.none,
+                                filled: true,
+                                fillColor: Colors.white,
+                              ),
+                            ),
+                          ),
+                          // const Text(' - '),
+                          // const Expanded(
+                          //   child: TextField(
+                          //     decoration: InputDecoration(
+                          //       border: InputBorder.none,
+                          //       filled: true,
+                          //       fillColor: Colors.white,
+                          //     ),
+                          //   ),
+                          // ),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 18.0,
+                      ),
+                      const Divider(),
+                    ],
+                  ),
+                if (selectedChoices.contains('FCF Yield')) //FCF Yield
+                  Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: const [
+                          Text(
+                            'FCF Yield',
+                            style: TextStyle(fontSize: 24),
+                            textAlign: TextAlign.left,
+                          ),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 18,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Expanded(
+                            child: DropdownButtonFormField(
+                              decoration: const InputDecoration(
+                                enabledBorder: InputBorder.none,
+                                filled: true,
+                                fillColor: Colors.white,
+                                //  contentPadding: EdgeInsets.all(0.0),
+                              ),
+                              isExpanded: true,
+                              value: dropdownValue,
+                              iconEnabledColor: kChipColor,
+                              items: <String>[
+                                'Greater than',
+                                'Less than',
+                                'Equals',
+                                'Between',
+                              ].map<DropdownMenuItem<String>>((String value) {
+                                return DropdownMenuItem<String>(
+                                  value: value,
+                                  child: Text(value),
+                                );
+                              }).toList(),
+                              onChanged: (String? newValue) {
+                                setState(() {
+                                  dropdownValue = newValue!;
+                                });
+                              },
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 2.0,
+                          ),
+                          const Expanded(
+                            child: TextField(
+                              decoration: InputDecoration(
+                                border: InputBorder.none,
+                                filled: true,
+                                fillColor: Colors.white,
+                              ),
+                            ),
+                          ),
+                          // const Text(' - '),
+                          // const Expanded(
+                          //   child: TextField(
+                          //     decoration: InputDecoration(
+                          //       border: InputBorder.none,
+                          //       filled: true,
+                          //       fillColor: Colors.white,
+                          //     ),
+                          //   ),
+                          // ),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 18.0,
+                      ),
+                      const Divider(),
+                    ],
+                  ),
+              ],
+            ),
           ),
         ),
       ),
@@ -162,7 +413,6 @@ class MultiSelectChip extends StatefulWidget {
 
 class _MultiSelectChipState extends State<MultiSelectChip> {
   //String selectedChoice = "";
-  List<String> selectedChoices = [];
   Color labelColor = kChipColor;
   // this function will build and return the choice list
   _buildChoiceList() {
@@ -185,7 +435,8 @@ class _MultiSelectChipState extends State<MultiSelectChip> {
               selectedChoices.contains(item)
                   ? selectedChoices.remove(item)
                   : selectedChoices.add(item);
-              print(item.toString() + " " + selected.toString());
+              //print(item.toString() + " " + selected.toString());
+              print(selectedChoices.contains('Ev/EBITDA'));
               //  widget.onSelectionChanged(selectedChoices);
             });
           },
@@ -199,43 +450,6 @@ class _MultiSelectChipState extends State<MultiSelectChip> {
   Widget build(BuildContext context) {
     return Wrap(
       children: _buildChoiceList(),
-    );
-  }
-}
-
-class DropDownWidget extends StatefulWidget {
-  const DropDownWidget({Key? key}) : super(key: key);
-
-  @override
-  State<DropDownWidget> createState() => _DropDownWidgetState();
-}
-
-class _DropDownWidgetState extends State<DropDownWidget> {
-  String dropdownValue = 'Greater than';
-
-  @override
-  Widget build(BuildContext context) {
-    return DropdownButton<String>(
-      value: dropdownValue,
-      icon: const Icon(Icons.arrow_downward),
-      elevation: 16,
-      style: const TextStyle(color: Colors.deepPurple),
-      underline: Container(
-        height: 2,
-        color: Colors.deepPurpleAccent,
-      ),
-      onChanged: (String? newValue) {
-        setState(() {
-          dropdownValue = newValue!;
-        });
-      },
-      items: <String>['Greater than', 'Two', 'Three', 'Four']
-          .map<DropdownMenuItem<String>>((String value) {
-        return DropdownMenuItem<String>(
-          value: value,
-          child: Text(value),
-        );
-      }).toList(),
     );
   }
 }
