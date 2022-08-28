@@ -376,6 +376,35 @@ class _MetricsScreenState extends State<MetricsScreen> {
                       const Divider(),
                     ],
                   ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    OutlinedButton(
+                      style: OutlinedButton.styleFrom(
+                        side: const BorderSide(color: kChipColor),
+                      ),
+                      onPressed: () {
+                        selectedChoices.clear();
+                      },
+                      child: const Text(
+                        'Clear',
+                        style: TextStyle(
+                          color: kChipColor,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 18.0,
+                    ),
+                    OutlinedButton(
+                      style: OutlinedButton.styleFrom(
+                        backgroundColor: kPrimaryColor,
+                      ),
+                      onPressed: () {},
+                      child: const Text('Apply'),
+                    ),
+                  ],
+                ),
               ],
             ),
           ),
