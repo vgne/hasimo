@@ -4,6 +4,72 @@ final valuation = <ScreenerResult>[
   const ScreenerResult(
     tickerName: 'RDS.A',
     marketCap: 300,
+    firstYear: '3.0x',
+    secondYear: '2.0x',
+    thirdYear: '2.0x',
+  ),
+  const ScreenerResult(
+    tickerName: 'BPMC',
+    marketCap: 200,
+    firstYear: '5.0x',
+    secondYear: '3.0x',
+    thirdYear: '2.0x',
+  ),
+  const ScreenerResult(
+    tickerName: 'ENI',
+    marketCap: 100,
+    firstYear: '4.0x',
+    secondYear: '2.0x',
+    thirdYear: '3.0x',
+  ),
+  const ScreenerResult(
+    tickerName: 'LKOH',
+    marketCap: 70,
+    firstYear: '5.0x',
+    secondYear: '3.0x',
+    thirdYear: '3.0x',
+  ),
+  const ScreenerResult(
+    tickerName: 'ROSN',
+    marketCap: 80,
+    firstYear: '1.0x',
+    secondYear: '3.0x',
+    thirdYear: '2.0x',
+  ),
+  const ScreenerResult(
+    tickerName: 'TATN',
+    marketCap: 100,
+    firstYear: '1.0x',
+    secondYear: '2.0x',
+    thirdYear: '1.0x',
+  ),
+  const ScreenerResult(
+    tickerName: 'XON',
+    marketCap: 190,
+    firstYear: '3.0x',
+    secondYear: '1.0x',
+    thirdYear: '2.0',
+  ),
+  const ScreenerResult(
+    tickerName: 'CVN',
+    marketCap: 200,
+    firstYear: '5.0x',
+    secondYear: '3.0x',
+    thirdYear: '2.0x',
+  ),
+  const ScreenerResult(
+    tickerName: 'COP',
+    marketCap: 100,
+    firstYear: '3.0x',
+    secondYear: '4.0x',
+    thirdYear: '2.0x',
+  ),
+];
+
+final yield = <ScreenerResult>[
+  const ScreenerResult(
+    tickerName: 'RDS.A',
+    marketCap: 300,
     firstYear: '10%',
     secondYear: '13%',
     thirdYear: '15%',
