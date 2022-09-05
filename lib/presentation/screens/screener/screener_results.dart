@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hasimo/constants/constants.dart';
+import 'package:hasimo/data/screener_result_data.dart';
+import 'package:hasimo/models/screener_result_models.dart';
 
 class ScreenerResults extends StatefulWidget {
   const ScreenerResults({Key? key}) : super(key: key);
@@ -9,8 +11,21 @@ class ScreenerResults extends StatefulWidget {
 }
 
 class _ScreenerResultsState extends State<ScreenerResults> {
+  late List<ScreenerResult> valuation;
+  int? sortColumnIndex;
+  bool isAscending = false;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    valuation = List.of(valuations);
+  }
+
   @override
   Widget build(BuildContext context) {
+    final columns = ['Ticker', 'M cap, \$', '2020', '2021', '2022'];
     return DefaultTabController(
       length: 3,
       child: Scaffold(
@@ -60,19 +75,24 @@ class _ScreenerResultsState extends State<ScreenerResults> {
       child: Scaffold(
         appBar: AppBar(
           centerTitle: false,
-          title: Text(
-            'Valuation',
-            style: TextStyle(
-              fontSize: 24.0,
-              fontWeight: FontWeight.bold,
+          title: const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 8.0),
+            child: Text(
+              'Valuation',
+              style: TextStyle(
+                fontSize: 24.0,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
           bottom: TabBar(
+            // isScrollable: true,
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
             indicator: BoxDecoration(
               borderRadius: BorderRadius.circular(50),
               color: kChipColor,
             ),
-            tabs: <Widget>[
+            tabs: const <Widget>[
               Tab(
                 child: Text(
                   'Ev/EBITDA',
@@ -91,6 +111,19 @@ class _ScreenerResultsState extends State<ScreenerResults> {
               ),
             ],
           ),
+        ),
+        body: TabBarView(
+          children: <Widget>[
+            Container(
+              color: Colors.red,
+            ),
+            Container(
+              color: Colors.blue,
+            ),
+            Container(
+              color: Colors.green,
+            ),
+          ],
         ),
       ),
     );

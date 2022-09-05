@@ -1,6 +1,6 @@
 import '../models/screener_result_models.dart';
 
-final valuation = <ScreenerResult>[
+final valuations = <ScreenerResult>[
   const ScreenerResult(
     tickerName: 'RDS.A',
     marketCap: 300,
@@ -66,7 +66,7 @@ final valuation = <ScreenerResult>[
   ),
 ];
 
-final yield = <ScreenerResult>[
+final yields = <ScreenerResult>[
   const ScreenerResult(
     tickerName: 'RDS.A',
     marketCap: 300,
