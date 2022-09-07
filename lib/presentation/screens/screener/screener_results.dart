@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hasimo/constants/constants.dart';
 import 'package:hasimo/data/screener_result_data.dart';
 import 'package:hasimo/models/screener_result_models.dart';
+import '../../widgets/scrollable_widget.dart';
 
 class ScreenerResults extends StatefulWidget {
   const ScreenerResults({Key? key}) : super(key: key);
@@ -25,7 +26,6 @@ class _ScreenerResultsState extends State<ScreenerResults> {
 
   @override
   Widget build(BuildContext context) {
-    final columns = ['Ticker', 'M cap, \$', '2020', '2021', '2022'];
     return DefaultTabController(
       length: 3,
       child: Scaffold(
@@ -114,9 +114,7 @@ class _ScreenerResultsState extends State<ScreenerResults> {
         ),
         body: TabBarView(
           children: <Widget>[
-            Container(
-              color: Colors.red,
-            ),
+            ScrollableWidget(child: buildDataTable()),
             Container(
               color: Colors.blue,
             ),
@@ -128,4 +126,62 @@ class _ScreenerResultsState extends State<ScreenerResults> {
       ),
     );
   }
+
+  Widget buildDataTable() {
+    final columns = ['Ticker', 'M cap, \$', '2020', '2021', '2022'];
+
+    return DataTable(
+      columnSpacing: 24.0,
+      sortAscending: isAscending,
+      sortColumnIndex: sortColumnIndex,
+      columns: getColumns(columns),
+      rows: getRows(valuation),
+    );
+  }
+
+  List<DataColumn> getColumns(List<String> columns) => columns
+      .map((String column) => DataColumn(
+            label: Text(column),
+            onSort: onSort,
+          ))
+      .toList();
+
+  List<DataRow> getRows(List<ScreenerResult> valuations) =>
+      valuations.map((ScreenerResult valuation) {
+        final cells = [
+          valuation.tickerName,
+          valuation.marketCap,
+          valuation.firstYear,
+          valuation.secondYear,
+          valuation.thirdYear
+        ];
+
+        return DataRow(cells: getCells(cells));
+      }).toList();
+
+  List<DataCell> getCells(List<dynamic> cells) =>
+      cells.map((data) => DataCell(Text('$data'))).toList();
+
+  void onSort(int columnIndex, bool ascending) {
+    if (columnIndex == 0) {
+      valuations.sort((ticker1, ticker2) =>
+          compareString(ascending, ticker1.tickerName, ticker2.tickerName));
+    }
+    // else if (columnIndex == 1) {
+    //   valuations.sort((marketCap1, marketCap2) =>
+    //       compareString(ascending, marketCap1.marketCap, marketCap2.marketCap));
+    // }
+    //  else if (columnIndex == 2) {
+    //   users.sort((user1, user2) =>
+    //       compareString(ascending, '${user1.age}', '${user2.age}'));
+    // }
+
+    setState(() {
+      sortColumnIndex = columnIndex;
+      isAscending = ascending;
+    });
+  }
+
+  int compareString(bool ascending, String value1, String value2) =>
+      ascending ? value1.compareTo(value2) : value2.compareTo(value1);
 }
