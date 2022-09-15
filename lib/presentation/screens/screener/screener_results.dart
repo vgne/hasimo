@@ -60,8 +60,8 @@ class _ScreenerResultsState extends State<ScreenerResults> {
         body: TabBarView(
           children: <Widget>[
             valuationTabs(),
-            Text('Valuation'),
-            Text('Yield'),
+            yieldTabs(),
+            returnsTabs(),
             //      Text('Returns'),
           ],
         ),
@@ -74,6 +74,7 @@ class _ScreenerResultsState extends State<ScreenerResults> {
       length: 3,
       child: Scaffold(
         appBar: AppBar(
+          elevation: 0.0,
           centerTitle: false,
           title: const Padding(
             padding: EdgeInsets.symmetric(horizontal: 8.0),
@@ -115,12 +116,106 @@ class _ScreenerResultsState extends State<ScreenerResults> {
         body: TabBarView(
           children: <Widget>[
             ScrollableWidget(child: buildDataTable()),
-            Container(
-              color: Colors.blue,
+            ScrollableWidget(child: buildDataTable()),
+            ScrollableWidget(child: buildDataTable()),
+          ],
+        ),
+      ),
+    );
+  }
+
+  yieldTabs() {
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
+        appBar: AppBar(
+          elevation: 0.0,
+          centerTitle: false,
+          title: const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 8.0),
+            child: Text(
+              'Yield',
+              style: TextStyle(
+                fontSize: 24.0,
+                fontWeight: FontWeight.bold,
+              ),
             ),
-            Container(
-              color: Colors.green,
+          ),
+          bottom: TabBar(
+            // isScrollable: true,
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            indicator: BoxDecoration(
+              borderRadius: BorderRadius.circular(50),
+              color: kChipColor,
             ),
+            tabs: const <Widget>[
+              Tab(
+                child: Text(
+                  'FCF Yield',
+                  // style: TextStyle(color: Colors.white),
+                ),
+              ),
+              Tab(
+                child: Text(
+                  'Dividend Yield',
+                ),
+              ),
+            ],
+          ),
+        ),
+        body: TabBarView(
+          children: <Widget>[
+            ScrollableWidget(child: buildDataTable()),
+            ScrollableWidget(child: buildDataTable()),
+          ],
+        ),
+      ),
+    );
+  }
+
+  returnsTabs() {
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
+        appBar: AppBar(
+          elevation: 0.0,
+          centerTitle: false,
+          title: const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 8.0),
+            child: Text(
+              'Returns',
+              style: TextStyle(
+                fontSize: 24.0,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          bottom: TabBar(
+            // isScrollable: true,
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            indicator: BoxDecoration(
+              borderRadius: BorderRadius.circular(50),
+              color: kChipColor,
+            ),
+            tabs: const <Widget>[
+              Tab(
+                child: Text(
+                  'ROA',
+                  // style: TextStyle(color: Colors.white),
+                ),
+              ),
+              Tab(
+                child: Text(
+                  'ROE,
+                ),
+              ),
+            ],
+          ),
+        ),
+        body: TabBarView(
+          children: <Widget>[
+            ScrollableWidget(child: buildDataTable()),
+            ScrollableWidget(child: buildDataTable()),
           ],
         ),
       ),
@@ -141,7 +236,10 @@ class _ScreenerResultsState extends State<ScreenerResults> {
 
   List<DataColumn> getColumns(List<String> columns) => columns
       .map((String column) => DataColumn(
-            label: Text(column),
+            label: Text(
+              column,
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
             onSort: onSort,
           ))
       .toList();
