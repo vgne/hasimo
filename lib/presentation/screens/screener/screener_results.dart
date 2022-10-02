@@ -206,7 +206,7 @@ class _ScreenerResultsState extends State<ScreenerResults> {
               ),
               Tab(
                 child: Text(
-                  'ROE,
+                  'ROE',
                 ),
               ),
             ],
