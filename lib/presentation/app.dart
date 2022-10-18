@@ -38,7 +38,7 @@ class HasimoApp extends StatelessWidget {
                 const MaterialColor(0xFFE8E5DD, kMaterialBackgroundColorCodes),
             fontFamily: 'Circe',
           ),
-          home: const HelpCenter(),
+          home: const ProfileScreen(),
           // initialRoute: LoginScreen.screenID,
           // routes: {
           //   LoginScreen.screenID: (context) => LoginScreen()

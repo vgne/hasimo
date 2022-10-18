@@ -7,6 +7,15 @@ class HelpCenter extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        title: const Text(
+          'Help Center',
+          style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.w700),
+        ),
+        centerTitle: false,
+        //backgroundColor: Colors.white,
+      ),
       // backgroundColor: ,
       body: SingleChildScrollView(
         child: SafeArea(

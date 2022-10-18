@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hasimo/constants/constants.dart';
+import 'help_center_screen.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -196,7 +197,127 @@ class ProfileScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    showModalBottomSheet(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return SizedBox(
+                          height: 500.0,
+                          child: Padding(
+                            padding: const EdgeInsets.all(24.0),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const Text(
+                                  'Pro',
+                                  style: TextStyle(
+                                      fontSize: 24.0,
+                                      fontWeight: FontWeight.w700),
+                                ),
+                                const SizedBox(height: 8.0),
+                                Row(
+                                  children: const [
+                                    Padding(
+                                      padding: EdgeInsets.only(right: 20.0),
+                                      child: Icon(
+                                        Icons.check_circle,
+                                        color: kPrimaryColor,
+                                        size: 20.0,
+                                      ),
+                                    ),
+                                    Text(
+                                      'Unlimited company report',
+                                      style: TextStyle(
+                                          fontSize: 18.0,
+                                          fontWeight: FontWeight.w700),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(
+                                  height: 8.0,
+                                ),
+                                Row(
+                                  children: const [
+                                    Padding(
+                                      padding: EdgeInsets.only(right: 20.0),
+                                      child: Icon(
+                                        Icons.check_circle,
+                                        color: kPrimaryColor,
+                                        size: 20.0,
+                                      ),
+                                    ),
+                                    Text(
+                                      'Stock screener',
+                                      style: TextStyle(
+                                          fontSize: 18.0,
+                                          fontWeight: FontWeight.w700),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(
+                                  height: 8.0,
+                                ),
+                                Row(
+                                  children: const [
+                                    Padding(
+                                      padding: EdgeInsets.only(right: 20.0),
+                                      child: Icon(
+                                        Icons.check_circle,
+                                        color: kPrimaryColor,
+                                        size: 20.0,
+                                      ),
+                                    ),
+                                    Text(
+                                      'Stock ideas views',
+                                      style: TextStyle(
+                                          fontSize: 18.0,
+                                          fontWeight: FontWeight.w700),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(
+                                  height: 8.0,
+                                ),
+                                Row(
+                                  children: const [
+                                    Padding(
+                                      padding: EdgeInsets.only(right: 20.0),
+                                      child: Icon(
+                                        Icons.check_circle,
+                                        color: kPrimaryColor,
+                                        size: 20.0,
+                                      ),
+                                    ),
+                                    Text(
+                                      'Export to PDF and CSV',
+                                      style: TextStyle(
+                                          fontSize: 18.0,
+                                          fontWeight: FontWeight.w700),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(
+                                  height: 14.0,
+                                ),
+                                const Text(
+                                  '\$110.00 / year',
+                                  style: TextStyle(
+                                      fontSize: 18.0,
+                                      color: Colors.grey,
+                                      decoration: TextDecoration.lineThrough),
+                                ),
+                                Text(
+                                  '\$90.00 / year',
+                                  style: TextStyle(fontSize: 32.0),
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      },
+                    );
+                  },
                 ),
                 const SizedBox(
                   height: 18.0,
@@ -224,7 +345,10 @@ class ProfileScreen extends StatelessWidget {
                         ),
                         trailing: const Icon(Icons.keyboard_arrow_right),
                         onTap: () {
-                          // do something
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const HelpCenter()));
                         },
                       ),
                       ListTile(
