@@ -307,9 +307,90 @@ class ProfileScreen extends StatelessWidget {
                                       color: Colors.grey,
                                       decoration: TextDecoration.lineThrough),
                                 ),
-                                Text(
-                                  '\$90.00 / year',
-                                  style: TextStyle(fontSize: 32.0),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    const Text(
+                                      '\$90.00 / year',
+                                      style: TextStyle(fontSize: 32.0),
+                                    ),
+                                    Container(
+                                      decoration: const BoxDecoration(
+                                          color: Color(0xFF33c227),
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(20))),
+                                      child: const Padding(
+                                        padding: EdgeInsets.all(6.0),
+                                        child: Text(
+                                          ' Save \$20 ',
+                                          style: TextStyle(
+                                              fontSize: 18.0,
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.w700),
+                                        ),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                                const SizedBox(height: 14.0),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: const[
+                                    Text(
+                                      'You can cancel trial in Account section.',
+                                      style: TextStyle(
+                                          fontSize: 14.0, color: Colors.grey),
+                                    )
+                                  ],
+                                ),
+                                const SizedBox(height: 8.0),
+                                OutlinedButton(
+                                  style: OutlinedButton.styleFrom(
+                                    backgroundColor: kPrimaryColor,
+                                    padding: const EdgeInsets.symmetric(vertical: 18.0),
+                                  ),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: const [
+                                      Text(
+                                        'Start 10-days free trial',
+                                        style: TextStyle(
+                                          fontSize: 18.0,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  onPressed: (){
+
+                                  },
+                                ),
+                                const SizedBox(height: 8.0),
+                                OutlinedButton(
+                                  style: OutlinedButton.styleFrom(
+                                    //backgroundColor: kPrimaryColor,
+                                    padding: const EdgeInsets.symmetric(vertical: 18.0),
+                                    side: const BorderSide(
+                                      width: 2.0,
+                                      color: kChipColor,
+                                      style: BorderStyle.solid,
+                                    ),
+                                  ),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: const [
+                                      Text(
+                                        'No, thanks.',
+                                        style: TextStyle(
+                                          fontSize: 18.0,
+                                          color: kChipColor,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  onPressed: (){
+                                    Navigator.pop(context);
+                                  },
                                 ),
                               ],
                             ),
