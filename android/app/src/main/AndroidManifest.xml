@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="io.hasimo">
    <application
-        android:label="hasimo"
+        android:label="Hasimo"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

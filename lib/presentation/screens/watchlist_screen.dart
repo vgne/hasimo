@@ -16,12 +16,19 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
   late List<WatchlistDataModel> watchlist;
   int? sortColumnIndex;
   bool isAscending = false;
+  bool isTableList = false;
+  bool isCardList = false;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     watchlist = List.of(watchlists);
+  }
+
+  @override
+  void setState(_) {
+    isCardList != isTableList;
   }
 
   @override
@@ -44,13 +51,19 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
         ),
         actions: <Widget>[
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              isTableList = true;
+              isTableList = false;
+            },
             icon: const Icon(Icons.menu),
           ),
           Padding(
             padding: const EdgeInsets.only(right: 8.0),
             child: IconButton(
-              onPressed: () {},
+              onPressed: () {
+                isTableList = false;
+                isTableList = true;
+              },
               icon: const Icon(Icons.view_agenda_outlined),
             ),
           ),
@@ -59,26 +72,315 @@ class _WatchlistScreenState extends State<WatchlistScreen> {
       backgroundColor: kBackgroundColor,
       body: Padding(
         padding: const EdgeInsets.all(24.0),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              TextFormField(
+                // controller: _emailController,
+                //textAlign: TextAlign.center,
+                decoration: kTextFieldDecoration.copyWith(
+                  labelText: 'Search in your watchlist',
+                  suffixIcon: const Icon(
+                    Icons.search,
+                    color: kPrimaryColor,
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 8.0,
+              ),
+             // if (isTableList) ? ScrollableWidget(child: watchlistTable()) : ScrollableWidget(child: watchlistCard()),
+              //buildDataTable(),
+              //ScrollableWidget(child: buildDataTable()),
+              ScrollableWidget(child: isTableList ? watchlistTable() : watchlistCard()),
+             // ScrollableWidget(child: watchlistCard()),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget watchlistCard() {
+    return Center(
+      child: SingleChildScrollView(
         child: Column(
           children: [
-            TextFormField(
-              // controller: _emailController,
-              //textAlign: TextAlign.center,
-              decoration: kTextFieldDecoration.copyWith(
-                labelText: 'Search in your watchlist',
-                suffixIcon: const Icon(
-                  Icons.search,
-                  color: kPrimaryColor,
+            Card(
+              color: Colors.white,
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      //mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: const [
+                        Icon(
+                          Icons.water_drop,
+                          color: kPrimaryColor,
+                        ),
+                        Text(
+                          ' Mineral Industry',
+                          style: TextStyle(fontSize: 18.0),
+                        ),
+                        SizedBox(
+                          width: 120.0,
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(right: 18.0),
+                          child: Text(
+                            '20:49 UTC',
+                            style: TextStyle(
+                              color: Colors.grey,
+                              fontSize: 14.0,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.only(top: 24.0),
+                      child: Text(
+                        'MSIX',
+                        style: TextStyle(
+                          fontSize: 16.0,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                    ),
+                    Row(
+                      children: const <Widget> [
+                        Text('LKOH', style: TextStyle(fontSize: 32.0, fontWeight: FontWeight.w700),),
+                        SizedBox(width: 140.0,),
+                        Text('4.611,50', style: TextStyle(fontSize: 32.0, fontWeight: FontWeight.w700),),
+                      ],
+                    ),
+                    Row(
+                      children: const <Widget>[
+                        Text('PJSC LUKOIL', style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w700, color: Colors.grey),),
+                        SizedBox(width: 120.0,),
+                        Text('+219,00', style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w700, color: Color(0xFF33C227),),),
+                        SizedBox(width: 18.0,),
+                        Text('+4,91%', style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w700, color: Color(0xFF33C227),),),
+                      ],
+                    ),
+                    const SizedBox(height: 24.0,),
+                    Container(
+                      decoration: const BoxDecoration(
+                        border: Border(bottom: BorderSide(color: kBackgroundColor, width: 0.5)),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.only(bottom: 8.0),
+                        child: Row(
+                          children: const <Widget>[
+                            Text('M Cap, \$', style: TextStyle(fontSize: 14.0),),
+                            SizedBox(width: 250.0,),
+                            Text('1.2 Bn', style: TextStyle(fontWeight: FontWeight.w700),),
+                          ],
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 8.0,),
+                    Container(
+                      padding: const EdgeInsets.only(bottom: 8.0),
+                      decoration: const BoxDecoration(
+                        border: Border(bottom: BorderSide(color: kBackgroundColor,width: 0.5),),
+                      ),
+                      child: Row(
+                        children: const [
+                          Text('Added to watchlist', style: TextStyle(fontSize: 14.0),),
+                          SizedBox(width: 125.0,),
+                          Text('October 12, 2022', style: TextStyle(fontWeight: FontWeight.w700),)
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 8.0,),
+                    Container(
+                      padding: const EdgeInsets.only(bottom: 8.0),
+                      decoration: const BoxDecoration(
+                        border: Border(bottom: BorderSide(color: kBackgroundColor, width: 0.5),),
+                      ),
+                      child: Row(
+                        children: const [
+                          Text('Performance since added'),
+                          SizedBox(width: 170.0,),
+                          Text('4%', style: TextStyle(color: Color(0xFF33C227), fontWeight: FontWeight.w700),),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 8.0,),
+                    Container(
+                      padding: const EdgeInsets.only(bottom: 8.0),
+                      decoration: const BoxDecoration(
+                        border: Border(bottom: BorderSide(color: kBackgroundColor, width: 0.5),),
+                      ),
+                      child: Row(
+                        children: const [
+                          Text('Divident yield'),
+                          SizedBox(width: 50.0,),
+                          Text('7%', style: TextStyle(fontWeight: FontWeight.w700, color:Color(0xFF33C227),),),
+                          SizedBox(width: 55.0,),
+                          Text('FCF Yield'),
+                          SizedBox(width: 50.0,),
+                          Text('5%', style: TextStyle(fontWeight: FontWeight.w700, color:Color(0xFF33C227),),),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 8.0,),
+                    Row(
+                      children: const [
+                        Text('Ev/EBITDA'),
+                        SizedBox(width: 60.0,),
+                        Text('4.0x', style: TextStyle(fontWeight: FontWeight.w700, color:Color(0xFF33C227),),),
+                        SizedBox(width: 55.0,),
+                        Text('P/E'),
+                        SizedBox(width: 80.0,),
+                        Text('3.0x', style: TextStyle(fontWeight: FontWeight.w700, color:Color(0xFF33C227),),),
+                      ],
+                    ),
+                  ],
                 ),
               ),
             ),
-            const SizedBox(
-              height: 8.0,
+            SizedBox(height: 16.0,),
+            Card(
+              color: Colors.white,
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      //mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: const [
+                        Icon(
+                          Icons.adb,
+                          color: kPrimaryColor,
+                        ),
+                        Text(
+                          ' Information technlogies',
+                          style: TextStyle(fontSize: 18.0),
+                        ),
+                        SizedBox(
+                          width: 60.0,
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(right: 18.0),
+                          child: Text(
+                            '20:49 UTC',
+                            style: TextStyle(
+                              color: Colors.grey,
+                              fontSize: 14.0,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.only(top: 24.0),
+                      child: Text(
+                        'NASDAQ',
+                        style: TextStyle(
+                          fontSize: 16.0,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                    ),
+                    Row(
+                      children: const <Widget> [
+                        Text('AMZN', style: TextStyle(fontSize: 32.0, fontWeight: FontWeight.w700),),
+                        SizedBox(width: 135.0,),
+                        Text('3.311,30', style: TextStyle(fontSize: 32.0, fontWeight: FontWeight.w700),),
+                      ],
+                    ),
+                    Row(
+                      children: const <Widget>[
+                        Text('AMAZON', style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w700, color: Colors.grey),),
+                        SizedBox(width: 160.0,),
+                        Text('-10,63', style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w700, color: Color(0xFFCF4425),),),
+                        SizedBox(width: 18.0,),
+                        Text('-0,32%', style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w700, color: Color(0xFFCF4425),),),
+                      ],
+                    ),
+                    const SizedBox(height: 24.0,),
+                    Container(
+                      decoration: const BoxDecoration(
+                        border: Border(bottom: BorderSide(color: kBackgroundColor, width: 0.5)),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.only(bottom: 8.0),
+                        child: Row(
+                          children: const <Widget>[
+                            Text('M Cap, \$', style: TextStyle(fontSize: 14.0),),
+                            SizedBox(width: 250.0,),
+                            Text('2.7 Bn', style: TextStyle(fontWeight: FontWeight.w700),),
+                          ],
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 8.0,),
+                    Container(
+                      padding: const EdgeInsets.only(bottom: 8.0),
+                      decoration: const BoxDecoration(
+                        border: Border(bottom: BorderSide(color: kBackgroundColor,width: 0.5),),
+                      ),
+                      child: Row(
+                        children: const [
+                          Text('Added to watchlist', style: TextStyle(fontSize: 14.0),),
+                          SizedBox(width: 110.0,),
+                          Text('September 23, 2022', style: TextStyle(fontWeight: FontWeight.w700),)
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 8.0,),
+                    Container(
+                      padding: const EdgeInsets.only(bottom: 8.0),
+                      decoration: const BoxDecoration(
+                        border: Border(bottom: BorderSide(color: kBackgroundColor, width: 0.5),),
+                      ),
+                      child: Row(
+                        children: const [
+                          Text('Performance since added'),
+                          SizedBox(width: 170.0,),
+                          Text('2%', style: TextStyle(color: Color(0xFF33C227), fontWeight: FontWeight.w700),),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 8.0,),
+                    Container(
+                      padding: const EdgeInsets.only(bottom: 8.0),
+                      decoration: const BoxDecoration(
+                        border: Border(bottom: BorderSide(color: kBackgroundColor, width: 0.5),),
+                      ),
+                      child: Row(
+                        children: const [
+                          Text('Divident yield'),
+                          SizedBox(width: 50.0,),
+                          Text('1%', style: TextStyle(fontWeight: FontWeight.w700, color:Color(0xFF33C227),),),
+                          SizedBox(width: 55.0,),
+                          Text('FCF Yield'),
+                          SizedBox(width: 50.0,),
+                          Text('4%', style: TextStyle(fontWeight: FontWeight.w700, color:Color(0xFF33C227),),),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 8.0,),
+                    Row(
+                      children: const [
+                        Text('Ev/EBITDA'),
+                        SizedBox(width: 60.0,),
+                        Text('2.0x', style: TextStyle(fontWeight: FontWeight.w700, color:Color(0xFF33C227),),),
+                        SizedBox(width: 55.0,),
+                        Text('P/E'),
+                        SizedBox(width: 85.0,),
+                        Text('1.0x', style: TextStyle(fontWeight: FontWeight.w700, color:Color(0xFF33C227),),),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
             ),
-            //buildDataTable(),
-            //ScrollableWidget(child: buildDataTable()),
-            //SingleChildScrollView(child: watchlistTable(),)
-            ScrollableWidget(child: watchlistTable()),
           ],
         ),
       ),
